@@ -4,7 +4,8 @@
   "description": "checks if a webpage changes or not Edit",
   "main": "index.js",
   "scripts": {
-    "help": "node index help"
+    "help": "node index help",
+    "start": "node index"    
   },
   "repository": {
     "type": "git",
