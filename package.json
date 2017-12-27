@@ -1,0 +1,33 @@
+{
+  "name": "webpage-diff-alerter",
+  "version": "1.0.0",
+  "description": "checks if a webpage changes or not Edit",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hobo05/webpage-diff-alerter.git"
+  },
+  "author": "Tim Cheng <tim.cheng@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hobo05/webpage-diff-alerter/issues"
+  },
+  "homepage": "https://github.com/hobo05/webpage-diff-alerter#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cheerio": "^1.0.0-rc.2",
+    "colors": "^1.1.2",
+    "diff": "^3.4.0",
+    "dotenv": "^4.0.0",
+    "install": "^0.10.2",
+    "lodash": "^4.17.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "sendemail": "^3.3.0",
+    "yargs": "^10.0.3"
+  }
+}
