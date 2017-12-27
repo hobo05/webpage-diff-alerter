@@ -36,7 +36,7 @@ function compareResults(scrapeOptions, alertEmailOptions, selector, compareTextU
 				console.log(`Sending alert with options=${JSON.stringify(alertEmailOptions)}!`)
 				email(alertEmailOptions)
 			} else {
-				console.log("No changes to scrapted text")
+				console.log("No changes to scraped text")
 			}
 		})
 }
