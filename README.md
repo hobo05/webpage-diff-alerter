@@ -19,14 +19,14 @@ checks if a webpage changes or not
 
 ### Scraping
 1. Loads the webpage provided
-* Selects the DOM element using the CSS selector
-* Extracts the text from that element
-* (Optional) Writes the text to a file for future comparison
+2. Selects the DOM element using the CSS selector
+3. Extracts the text from that element
+4. (Optional) Writes the text to a file for future comparison
 
 ### Comparison
 1. Loads a hosted file with the text to compare
-* Compares the scraped text with the hosted text
-* Sends an alert if the text differs from each other
+2. Compares the scraped text with the hosted text
+3. Sends an alert if the text differs from each other
 
 
 ## How to run it locally
@@ -37,16 +37,16 @@ checks if a webpage changes or not
 	$ cd webpage-diff-alerter.git
 	$ cp .env-example .env
 	```
-* Open up .env
-* Update the various fields. See <https://github.com/dwyl/sendemail> for directions
-* Install the dependencies and run the help command
+2. Open up .env
+3. Update the various fields. See <https://github.com/dwyl/sendemail> for directions
+4. Install the dependencies and run the help command
 
 
 	```bash
 	$ npm install
 	$ npm run help
 	```
-* You should see the following usage
+5. You should see the following usage
 
 	```bash
 	Usage: index [options]
@@ -66,31 +66,31 @@ checks if a webpage changes or not
 	                                      [required] [choices: "extract", "compare"]
 	  --help              Show help                                        [boolean]
 	```
-* Run with extract mode to get the baseline text
+6. Run with extract mode to get the baseline text
 
 	```bash
 	$ node index -a "Test Alert" -u "http://localhost:8000?q=1234" -s "div#someid>h2" -f extracted.txt -m extract
 	```
-* Upload the text somewhere like AWS S3
-* Run with comparison mode to check if the text has changed
+7. Upload the text somewhere like AWS S3
+8. Run with comparison mode to check if the text has changed
 
 	```bash
 	$ node index -a "Test Alert" -u "http://localhost:8000?q=1234" -s "div#someid>h2" -c "https://s3.amazonaws.com/my-s3-bucket/extracted.txt" -e "my@email.com,his@email.com" -x "errors@mail.com" -m compare
 	```
-* You can simply set a cron job on your local server/machine to check for changes
+9. You can simply set a cron job on your local server/machine to check for changes
 
 ## How to run it in Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 1. After performing the local setup and seeing that everything works, sign up for Heroku on the free plan with the button above
-* Follow the tutorial for [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) if you don't know how Heroku works
-* Create a new Heroku app from your project root
-* Install <https://github.com/xavdid/heroku-config> and push your .env settings to heroku
-* Run the following commands to do one-off runs on heroku 
+2. Follow the tutorial for [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) if you don't know how Heroku works
+3. Create a new Heroku app from your project root
+4. Install <https://github.com/xavdid/heroku-config> and push your .env settings to heroku
+5. Run the following commands to do one-off runs on heroku 
 
 	```bash
 	$ git push heroku master
 	$ heroku run 'node index -a "Test Alert" -u "http://localhost:8000?q=1234" -s "div#someid>h2" -c "https://s3.amazonaws.com/my-s3-bucket/extracted.txt" -e "my@email.com,his@email.com" -x "errors@mail.com" -m compare'
 	```
-* Use the [Heroku Scheduler](https://elements.heroku.com/addons/scheduler) to run it periodically to check for changes
+6. Use the [Heroku Scheduler](https://elements.heroku.com/addons/scheduler) to run it periodically to check for changes
