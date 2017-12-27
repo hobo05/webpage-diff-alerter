@@ -71,7 +71,7 @@ checks if a webpage changes or not
 	```bash
 	$ node index -a "Test Alert" -u "http://localhost:8000?q=1234" -s "div#someid>h2" -f extracted.txt -m extract
 	```
-7. Upload the text somewhere like AWS S3
+7. Upload the text somewhere like dropbox, pastebin, AWS S3, etc...
 8. Run with comparison mode to check if the text has changed
 
 	```bash
