@@ -56,6 +56,11 @@ function printDiff(expected, actual) {
 
 function logAndSendError(errorEmailOptions, err) {
 	console.error(err)
+	if (errorEmailOptions.toAddresses === undefined) {
+		console.log('No email(s) set for error-emails, only logging')
+		return
+	}
+	
 	let options = _.cloneDeep(errorEmailOptions)
 	options.context.error = err
 	email(options)
@@ -98,6 +103,10 @@ var argv = require('yargs')
 		describe: 'the different operating modes. "extract" will output the extracted text to output.txt and "compare" will compare extracted text with the file provided',
 		choices: ['extract', 'compare']
 	})
+	.option('request-options', {
+		alias: 'r',
+		describe: 'the request options in JSON besides "uri" (see https://github.com/request/request#requestoptions-callback)',
+	})
 	.coerce({
 		emails: value => value.split(','),
 		'error-emails': value => value.split(',')
@@ -118,12 +127,15 @@ var argv = require('yargs')
 
 console.log(argv)
 
-var scrapeOptions = {
+let requestOptions = argv['request-options'] || '{}';
+let scrapeOptions = Object.assign({
     uri: argv.URL,
     transform: function (body) {
         return cheerio.load(body)
     }
-};
+}, JSON.parse(requestOptions));
+
+console.log(`scrapeOptions=${JSON.stringify(scrapeOptions)}`)
 
 var alertEmailOptions = {
 	templateName: 'alert',
